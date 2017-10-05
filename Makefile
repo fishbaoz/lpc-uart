@@ -2,7 +2,9 @@ PROJECT_FILE=device.qsf
 SOURCES=$(shell awk '/^set_global_assignment -name VERILOG_FILE/ {print $$NF}' $(PROJECT_FILE))
 TOPLEVEL=$(shell awk '/^set_global_assignment -name TOP_LEVEL_ENTITY/ {print $$NF}' $(PROJECT_FILE))
 
-PATH:=$(PATH):$(HOME)/intelFPGA_lite/16.1/quartus/bin/
+#SOURCES += tb.v
+
+PATH:=$(PATH):/c/altera/13.1/quartus/bin64
 
 all: do_all stats
 

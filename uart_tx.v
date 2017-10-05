@@ -12,12 +12,14 @@ module uart_tx (
 	data_valid,
 	tx,
 	busy
+//	led
 );
 	input clk;
 	input [7:0] data;
 	input data_valid;
 	output tx;
 	output busy;
+	//output [3:0] led;
 
 	wire clk;
 	wire [7:0] data;
@@ -27,7 +29,10 @@ module uart_tx (
 
 	// 286 * 115200 = 32947200 MHz
 	parameter DIVISOR = 286;
+	// parameter DIVISOR = 434; //50 MHz
 	reg [8:0] divisor = 0;
+
+	//wire [7:0] temp_data = 8'h55;
 
 	parameter IDLE = 0;
 	parameter ENABLE = 1;
@@ -44,11 +49,23 @@ module uart_tx (
 	reg [3:0] state = IDLE;
 	assign busy = (state > IDLE);
 
+	//reg [3:0] led_value = 4'b0111;
+
+	//assign led = led_value;
+
+	//initial
+	//begin
+	//	led_value = 4'b1111;
+	//end
+
 	always @(posedge clk)
 	begin
 		// $display("UARTCLK: [%d] [%d] [%d] {%d}", state, data_valid, divisor, tx);
 		if (data_valid == 1 && state == IDLE)
+		//if (state == IDLE)
 			state = ENABLE;
+
+		//led_value <= 4'b1100;
 
 		if (divisor == DIVISOR)
 		begin
@@ -60,7 +77,7 @@ module uart_tx (
 			case (state)
 			IDLE: tx <= 1'bZ;
 			START: tx <= 0;
-			DATA0: tx <= data[0];
+			DATA0: tx <= data[0]; //temp_date for test
 			DATA1: tx <= data[1];
 			DATA2: tx <= data[2];
 			DATA3: tx <= data[3];

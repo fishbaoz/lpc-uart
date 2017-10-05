@@ -49,12 +49,19 @@ set_global_assignment -name USE_CONFIGURATION_DEVICE ON
 set_global_assignment -name RESERVE_ALL_UNUSED_PINS "AS INPUT TRI-STATED"
 set_global_assignment -name RESERVE_ALL_UNUSED_PINS_NO_OUTPUT_GND "AS INPUT TRI-STATED"
 set_global_assignment -name CDF_FILE device.cdf
-set_location_assignment PIN_1 -to LPC_D3
-set_location_assignment PIN_2 -to LPC_D2
-set_location_assignment PIN_3 -to LPC_D1
-set_location_assignment PIN_4 -to LPC_D0
-set_location_assignment PIN_5 -to LPC_RST
-set_location_assignment PIN_6 -to LPC_CLK
-set_location_assignment PIN_100 -to LPC_FRAME
-set_location_assignment PIN_98 -to UART_TX
-set_location_assignment PIN_99 -to UART_RX
+set_location_assignment PIN_81 -to LPC_D3 # P4 pin5 -> pin7 (20)
+set_location_assignment PIN_82 -to LPC_D2 # P4 pin6 -> pin8 (20)
+set_location_assignment PIN_62 -to LPC_D1 # P1 pin12 -> pin10 (20)
+set_location_assignment PIN_64 -to LPC_D0 # P1 pin14 -> pin11 (20)
+set_location_assignment PIN_42 -to LPC_RST # P3 pin16 -> pin5 (20)
+set_location_assignment PIN_43 -to LPC_CLK # P3 pin17 -> pin1 (20)
+#set_location_assignment PIN_12 -to LPC_CLK # use 50MHz as test
+set_location_assignment PIN_33 -to LPC_FRAME # P3 pin7 -> pin3 (20)
+set_location_assignment PIN_78 -to UART_TX
+set_location_assignment PIN_77 -to UART_RX
+set_location_assignment PIN_21 -to LED_0 
+set_location_assignment PIN_20 -to LED_1 
+set_location_assignment PIN_19 -to LED_2
+set_location_assignment PIN_18 -to LED_3
+# 3.3v  P1 pin9 -> pin15 (20)
+# GND  P1 pin10 -> pin17 (20)
